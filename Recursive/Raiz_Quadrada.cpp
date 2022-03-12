@@ -4,23 +4,27 @@
 
 using namespace std;
 
-double raiz(int x, int xo, double e){
+double raiz(float x, float xo, double e){
     if(abs(pow(xo, 2) - x) <= e)
-        return sqrt(x);
+        return xo;
     else
         return raiz(x, (pow(xo, 2) + x)/(2 * xo), e);
 }
 
 int main(){
-    int n, no;//numero a realizar raiz e sua estimativa
+    float n, no;//numero a realizar raiz e estimativa
     double e;//lim superior
+    double result;//resultado da raiz
 
     //input
     cin >> n >> no >> e;
     
+    //calculo da raiz
+    result = raiz(n, no, e);
+
     //output
-    cout << fixed << setprecision(2);
-    cout << raiz(n, no, e) << endl;
+    cout << fixed << setprecision(4);
+    cout << result << endl;
 
     return 0;
 }
