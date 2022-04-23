@@ -1,4 +1,4 @@
-#include <iostream> // Entrada e sa�da
+#include <iostream> // Entrada e saida
 #include <climits> // INT_MAX
 
 using namespace std;
@@ -32,7 +32,7 @@ int main()
 	// inicializando vetor vis (nenhuma cidade foi visitada no inicio)
 	for(int i = 0;i < n;i++)
 		vis[i] = false;
-	
+		
 	// guloso
 	menor_custo = 0;
 	cidade_atual = cidade_inicial;

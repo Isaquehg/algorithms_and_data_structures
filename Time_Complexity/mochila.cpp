@@ -62,8 +62,7 @@ int main()
 			else
 				pega = 0; // se nao posso pegar, o valor eh 0
 
-			
-			
+
 			if(pega > npega) // se valer a pena pegar
 			{
 				pd[i][j] = pega;
