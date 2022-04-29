@@ -85,11 +85,17 @@ int main(){
     list<no> adj[100];//lista adjacencia
 
     //input e criacao do grafo
+    cout << "Entre com o numero de vertices, orientado, vo e vf: ";
     cin >> nvertices >> orientado >> vo >> vf;
+    cout << endl;
+    cout << "Entre com os vertices inicial, final e peso: ";
     cin >> u >> v >> p;
+    cout << endl;
     while(u != -1 && v != -1 && p != -1){
         cria_aresta(adj, u, v, p, orientado);
+        cout << "Entre com os vertices inicial, final e peso: ";
         cin >> u >> v >> p;
+        cout << endl;
     }
     dijkstra(adj, nvertices, vo, vf);
 
