@@ -50,6 +50,7 @@ treenodeptr tMenor(treenodeptr &raiz)
         return tMenor(raiz->esq);
 }
 
+//remover nos
 int tRemove(treenodeptr &raiz, int x)
 {
     treenodeptr p;
@@ -80,6 +81,18 @@ int tRemove(treenodeptr &raiz, int x)
     }
 }
 
+//destruir arvore
+void tDestruir (treenodeptr &arvore)
+{
+    if (arvore != NULL)
+    {
+        tDestruir(arvore->esq);
+        tDestruir(arvore->dir);
+        delete arvore;
+    }
+    arvore = NULL;
+}
+
 int main(){
     treenodeptr arvore = NULL;//tree
     int x;//aux
@@ -94,10 +107,17 @@ int main(){
     cin >> y;
 
     //delete
-    tRemove(arvore, y);
+    int i;//aux
+    i = tRemove(arvore, y);
+    while(i != 1){
+        i = tRemove(arvore, y);
+    }
 
     //output nos restantes
     posOrdem(arvore);
+
+    //destruindo
+    tDestruir(arvore);
 
     return 0;
 }
