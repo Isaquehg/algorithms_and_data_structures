@@ -23,12 +23,6 @@ float vetorial(vetor a, vetor b){
     resultado = a.x*b.y - a.y*b.x;
 }
 
-float escalar(vetor a, vetor b){
-    float resultado;
-    resultado = a.x*b.x + a.y*b.y;
-    return resultado;
-}
-
 float area_triangulo(ponto a, ponto b, ponto c){
     vetor ab;
     vetor ac;
@@ -70,31 +64,31 @@ int dentro_triangulo(ponto a, ponto b, ponto c, ponto p){
     s2 = sentido(b, c, p);
     s3 = sentido(c, a, p);
     if(s1 == s2 && s2 == s3)
-        return 1;
+        return 1; //se p estiver dentro do triangulo
     else if((s1 * s3 == -1) || (s1 * s2 == -1) || (s2 * s3 == -1))
-        return -1;
+        return -1; // p esta fora do triangulo
     else
-        return 0;
+        return 0; //p esta na borda
 }
 
 int main(){
-    int n;//qntdade de conjunto de pontos
-    float result;
-    ponto p1, p2, p3;
+    ponto p1, p2, p3, p4;//pontos dados
+    int dentro_fora;//verificar se esta no triangulo
 
     //input
-    cin >> n;
+    cin >> p1.x >> p1.y;
+    cin >> p2.x >> p2.y;
+    cin >> p3.x >> p3.y;
+    cin >> p4.x >> p4.y;
 
-    for(int i = 0; i < n; i ++){
-        cin >> p1.x >> p1.y;
-        cin >> p2.x >> p2.y;
-        cin >> p3.x >> p3.y;
-        result = area_triangulo(p1, p2, p3);
-        if(result == 0)
-            cout << "Nao formam triangulo" << endl;
-        else
-            cout << fixed << setprecision(2) << result << endl;
-    }
+    //calculando se p[4] esta dentro do triangulo
+    dentro_fora = dentro_triangulo(p1, p2, p3, p4);
+
+    //output
+    if(dentro_fora == 1)
+        cout << "Ataquem" << endl;
+    else
+        cout << "Preparem-se" << endl;
 
     return 0;
 }
