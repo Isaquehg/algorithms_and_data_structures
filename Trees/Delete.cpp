@@ -25,13 +25,13 @@ void tInsere(treenodeptr &p, int x)
     }
 }
 
-void posOrdem (treenodeptr arvore)
+void emOrdem (treenodeptr arvore)
 {
     if (arvore != NULL)
     {
-        posOrdem(arvore->esq);
-        posOrdem(arvore->dir);
+        emOrdem(arvore->esq);
         cout << arvore->info << " ";
+        emOrdem(arvore->dir);
     }
 }
 
@@ -114,7 +114,7 @@ int main(){
     }
 
     //output nos restantes
-    posOrdem(arvore);
+    emOrdem(arvore);
 
     //destruindo
     tDestruir(arvore);
