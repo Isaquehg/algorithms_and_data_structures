@@ -31,7 +31,7 @@ void posOrdem (treenodeptr arvore)
     {
         posOrdem(arvore->esq);
         posOrdem(arvore->dir);
-        cout << arvore->info << endl;
+        cout << arvore->info << " ";
     }
 }
 
@@ -80,25 +80,6 @@ int tRemove(treenodeptr &raiz, int x)
     }
 }
 
-//contando numero de nos na arvore (podemos utilizar qualquer uma das funcoes de percurso em profundidade!)
-void contaPreOrdem(treenodeptr arvore, int &n)
-{
-    if (arvore != NULL)
-    {
-        n ++;
-        cout << arvore->info << endl;
-        contaPreOrdem(arvore->esq, n);
-        contaPreOrdem(arvore->dir, n);
-    }
-}
-int contaNos(treenodeptr arvore){
-    int n = 0;
-
-    contaPreOrdem(arvore, n);
-
-    return n;
-}
-
 int main(){
     treenodeptr arvore = NULL;//tree
     int x;//aux
@@ -110,17 +91,12 @@ int main(){
         tInsere(arvore, x);
         cin >> x;
     }
+    cin >> y;
 
-    //percurso pre-ordem
-    cout << "Pre-ordem:" << endl;
-    preOrdem(arvore);
+    //delete
+    tRemove(arvore, y);
 
-    //percurso em ordem
-    cout << "Em ordem:" << endl;
-    emOrdem(arvore);
-
-    //precurso pos-ordem
-    cout << "Pos ordem:" << endl;
+    //output nos restantes
     posOrdem(arvore);
 
     return 0;
