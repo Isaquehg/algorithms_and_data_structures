@@ -25,66 +25,51 @@ void tInsere(treenodeptr &p, int x)
     }
 }
 
-void preOrdem (treenodeptr arvore, int x, int &pre)
+int preOrdem (treenodeptr arvore, int x, int &i)
 {
     if (arvore != NULL)
     {
-        if(arvore->info != x){
-            pre ++;
-            preOrdem(arvore->esq, x, pre);
-            preOrdem(arvore->dir, x, pre);
+        if(arvore->info == x){
+            return i;
         }
+        else
+            i ++;
+            preOrdem(arvore->esq, x, i);
+            preOrdem(arvore->dir, x, i);
     }
 }
-
-void emOrdem (treenodeptr arvore, int x, int &em)
+int emOrdem (treenodeptr arvore, int x, int &j)
 {
     if (arvore != NULL)
     {
-        if(arvore->info != x){
-            emOrdem(arvore->esq, x, em);
-            em ++;
-            emOrdem(arvore->dir, x, em);
+        if(arvore->info == x){
+            return j;
         }
+        else
+            emOrdem(arvore->esq, x, j);
+            j ++;
+            emOrdem(arvore->dir, x, j);
     }
 }
 
-void posOrdem (treenodeptr arvore, int x, int &pos)
+int posOrdem (treenodeptr arvore, int x, int &k)
 {
     if (arvore != NULL)
     {
-        if(arvore->info != x){
-            posOrdem(arvore->esq, x, pos);
-            posOrdem(arvore->dir, x, pos);
-            pos ++;
+        if(arvore->info == x){
+            return k;
         }
+        else
+            posOrdem(arvore->esq, x, k);
+            posOrdem(arvore->dir, x, k);
+            k ++;
     }
-}
-
-void contaPreOrdem(treenodeptr arvore, int &n)
-{
-    if (arvore != NULL)
-    {
-        n ++;
-        cout << arvore->info << endl;
-        contaPreOrdem(arvore->esq, n);
-        contaPreOrdem(arvore->dir, n);
-    }
-}
-int contaNos(treenodeptr arvore){
-    int n = 0;
-
-    contaPreOrdem(arvore, n);
-
-    return n;
 }
 
 int main(){
     treenodeptr arvore = NULL;//tree
     int x;//aux e cidade a procurar
     int pre, pos, em;//menor distancia de cada
-    int n;//num de nos
-
     pre = 0;
     pos = 0;
     em = 0;
@@ -98,16 +83,20 @@ int main(){
     cin >> x;
 
     //percurso pre-ordem
-    preOrdem(arvore, x, pre);
+    int i_pre = 0;//aux
+    int i_em = 0;//aux
+    int i_pos = 0;//aux
+    pre = preOrdem(arvore, x, i_pre);
     cout << "Pre-ordem:" << pre << endl;
 
     //percurso em ordem
-    emOrdem(arvore, x, em);
+    em = emOrdem(arvore, x, i_em);
     cout << "Em ordem:" << em << endl;
 
     //precurso pos-ordem
-    posOrdem(arvore, x, pos);
+    pos = posOrdem(arvore, x, i_pos);
     cout << "Pos ordem:" << pos << endl;
+    cout << endl;
 
     //output
     if((pre < em) && (pre < pos))
