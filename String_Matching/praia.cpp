@@ -37,7 +37,7 @@ void calcula_LPS(int lps[], char P[], int tamP)
 }
 
 // KMP Algorithm
-void kmp(char T[], char P[], int tamT, int tamP)
+void kmp(char T[], char P[], int tamT, int tamP, int ep)
 {
 	int lps[tamP]; // vetor que indica para onde voltarei no padrao quando ocorrer um mismatch
 	// lps -> indica o tamanho do maior sufixo de p[0...i] que tambem eh prefixo de p[0...i] (exceto a string inteira)
@@ -56,7 +56,8 @@ void kmp(char T[], char P[], int tamT, int tamP)
 			if(j == tamP) // encontrei o padrao no texto na posicao (i-tamP) até i
 			{
 				pos = i - tamP;
-				cout << i - tamP << endl;
+				cout << "pule o episodio " << ep + 1 << endl;
+                break;
 				j = lps[j - 1];
 			}
 		}
@@ -76,16 +77,21 @@ void kmp(char T[], char P[], int tamT, int tamP)
 
 int main(){
     int m, n;
+    int episodios;
 
     char T[100]; //texto
-    char P[100]; //padrao
+    char P[4]; //padrao
+    P[0] = 'm';
+    P[1] = 'a';
+    P[2] = 'r';
 
     //input
-    cin.getline(T, 100);
-    cin.getline(P, 100);
-
-    //kmp algorithm
-    kmp(T, P, strlen(T), strlen(P));
+    cin >> episodios;
+    cin.ignore();
+    for(int i = 0; i < episodios; i ++){
+        cin.getline(T, 100);
+        kmp(T, P, strlen(T), strlen(P), i);
+    }
 
     return 0;
 }
